@@ -13,6 +13,8 @@
 
         IQueryable<AdminUserInfoServiceModel> GetUser(string userId);
 
+        Task<bool> UserPhotosUpdateStatus(string userId, List<UserImages> photos);
+
         //IEnumerable<string> GetAllRoles();
 
         //Task<bool> UserAddToRole(string userId, string role);

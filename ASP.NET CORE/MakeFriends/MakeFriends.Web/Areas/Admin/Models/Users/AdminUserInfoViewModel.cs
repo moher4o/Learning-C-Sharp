@@ -61,7 +61,7 @@ namespace MakeFriends.Web.Areas.Admin.Models.Users
 
         public Relations? Relations { get; set; }
 
-        public IEnumerable<UserImages> Photos { get; set; }
+        public List<UserImages> Photos { get; set; }
 
     }
 }

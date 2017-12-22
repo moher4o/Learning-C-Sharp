@@ -66,5 +66,22 @@ namespace MakeFriends.Services.Admin.Implementations
             throw new NotImplementedException();
         }
 
+        public async Task<bool> UserPhotosUpdateStatus(string userId, List<UserImages> photos)
+        {
+            if (userId == null || photos == null)
+            {
+                return false;
+            }
+            foreach (var photo in photos)
+            {
+                var photoName = photo.PhotoPath.Substring(photo.PhotoPath.LastIndexOf('/')+1);
+                var userPhoto = this.db.Images
+                    .FirstOrDefault(i => i.UserId == userId && i.PhotoName == photoName);
+                userPhoto.IsApproved = photo.IsApproved;
+                await this.db.SaveChangesAsync();
+            }
+
+            return true;
+        }
     }
 }

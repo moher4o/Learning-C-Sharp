@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
+using static MakeFriends.Data.DataConstants;
 
 namespace MakeFriends.Web.Areas.Admin.Controllers
 {
@@ -58,13 +59,19 @@ namespace MakeFriends.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> EditUser(AdminUserInfoViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (model.Id == null || model.Photos == null)
             {
+                TempData[ErrorMessageKey] = "Invalid data";
                 return RedirectToAction(nameof(AllUsers), new { page = 1 });
             }
 
-
-            return View(model);
+            var result = await this.users.UserPhotosUpdateStatus(model.Id, model.Photos);
+            if (result)
+            {
+                TempData[SuccessMessageKey] = "Updated status of user photos";
+            }
+            
+            return RedirectToAction(nameof(this.EditUser),new { userId = model.Id});
 
         }
     }
