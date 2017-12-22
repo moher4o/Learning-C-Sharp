@@ -1,0 +1,81 @@
+﻿@model FullUserInfoViewModel
+@{
+    ViewData["Title"] = "User Info";
+}
+
+<h3 class="col-xs-offset-4">@Model.Name</h3>
+
+<div class="col-md-4">
+    <div class="panel panel-default panel-transparent">
+
+        <div class="panel-body user-list-photo">
+            <div class="form-group">
+                <label>Personal information</label>
+            </div>
+            <div class="form-group">
+                <label>Birth Date: </label>
+                @Model.BirthDate.ToShortDateString()
+            </div>
+            <div class="form-group">
+                <label>Аppearance: </label>
+                @Model.ShortView
+            </div>
+            <div class="form-group">
+                <label>Hair color: </label>
+                @Model.HairColor.ToString()
+            </div>
+            <div class="form-group">
+                <label>Eyes color: </label>
+                @Model.EyesColor.ToString()
+            </div>
+            <div class="form-group">
+                <label>Relations: </label>
+                @Model.Relations
+            </div>
+            <div class="form-group">
+                <label>Sexuality: </label>
+                @Model.Sexuality.ToString()
+            </div>
+            @*<div class="form-group">
+                    <label>Hair color: </label>
+                    @Model.
+                </div>*@
+
+            <div class="form-group">
+                <label asp-for="IsDrinking">Is Drinking</label>
+                @Html.RadioButtonFor(m => m.IsDrinking, true, new { disabled = "disabled" }) Yes
+                @Html.RadioButtonFor(m => m.IsDrinking, false, new { disabled = "disabled" }) No
+                <span asp-validation-for="IsDrinking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSmoking">Is Smoking</label>
+                @Html.RadioButtonFor(m => m.IsSmoking, true, new { disabled = "disabled" }) Yes
+                @Html.RadioButtonFor(m => m.IsSmoking, false, new { disabled = "disabled" }) No
+                <span asp-validation-for="IsSmoking" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Description:</label>
+                <textarea asp-for="Description" class="form-control" disabled></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" asp-action="Messages" asp-route-receiverId="@Model.Id">View Messages</a>
+</div>
+<div class="col-md-8">
+    @foreach (var photo in Model.Photos)
+    {
+        <div class="col-md-3">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-body user-list-photo">
+                    <a asp-action="NewFriends" asp-route-wantedUserId="@Model.Id"><img src=@photo alt="userPhoto" class="img-responsive" /></a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

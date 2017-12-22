@@ -1,0 +1,17 @@
+﻿@using MakeFriends.Web.Views.User
+
+@if (User.Identity.IsAuthenticated)
+{
+<ul class="nav nav-pills nav-stacked">
+    <li class="@ManageNavPagesHome.NewFriendsNavClass(ViewContext)"><a asp-action="NewFriends">New friendships</a></li>
+    <li class="@ManageNavPagesHome.LikesNavClass(ViewContext)"><a asp-action="Likes">Likes</a></li>
+    <li class="@ManageNavPagesHome.VisitorsNavClass(ViewContext)"><a asp-action="Visitors">Visitors</a></li>
+    <li class="@ManageNavPagesHome.FavoritesNavClass(ViewContext)"><a asp-action="Favorites">Favorites</a></li>
+    @*<li class="@ManageNavPagesHome.MutualfeelingsNavClass(ViewContext)"><a asp-action="MutualFeelings">Mutual feelings</a></li>*@
+</ul>
+}
+else
+{
+ 
+}
+

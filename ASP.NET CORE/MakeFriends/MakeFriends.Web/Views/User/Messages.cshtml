@@ -1,0 +1,36 @@
+﻿@model MessageViewModel
+@{
+    ViewData["Title"] = "Messages";
+}
+
+
+<h2>Messages with @Model.ReceiverFirstName</h2>
+<div class="row">
+    <div class="col-md-7">
+        @foreach (var message in Model.Messages)
+        {
+            <div class="row">
+                <div class="form-group @(message.SenderId == Model.SenderId ? "pull-left" : "pull-right")">
+                    <label>@message.SenderFirstName:</label>
+                    @message.Content
+                </div>
+
+            </div>
+
+        }
+        
+    </div>
+
+    <div class="col-md-5">
+        <form method="post">
+            @Html.HiddenFor(x => x.SenderId)
+            @Html.HiddenFor(x => x.ReceiverId)
+            <textarea asp-for="Content" rows="4" class="form-control button-margin"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+            <input type="submit" class="btn btn-success pull-right" value="Send Message" />
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

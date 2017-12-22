@@ -1,0 +1,30 @@
+﻿@model IEnumerable<VisitorViewModel>
+@{
+    ViewData["Title"] = "Visitors";
+    ViewData.AddActivePage(ManageNavPagesHome.Visitors);
+}
+
+<h2 class="col-xs-offset-3">Visitors from the last 6 months</h2>
+
+<div class="row user-page">
+
+    @foreach (var user in Model)
+    {
+        <div class="col-md-3">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><a asp-controller="User" asp-action="UserInfo" asp-route-userId="@user.Id">@(user.FirstName + " - " + user.VisitDate.ToShortDateString())</a></h4>
+                </div>
+                <div class="panel-body user-list-photo">
+                    <a asp-controller="User" asp-action="UserInfo" asp-route-userId="@user.Id"><img src=@user.PhotoPath alt="userPhoto" class="img-responsive" /></a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+

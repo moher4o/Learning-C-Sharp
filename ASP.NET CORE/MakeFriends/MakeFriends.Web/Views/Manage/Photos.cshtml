@@ -1,0 +1,47 @@
+﻿@model PhotoViewModel
+@{
+    ViewData["Title"] = "Photos";
+    ViewData.AddActivePage(ManageNavPages.Photos);
+}
+
+<div class="row user-bigphoto">
+    <div class="col-md-3">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
+            <input type="file" name="newPhotos" style="display:none" accept="image/*" multiple />
+            <button type="button" class="btn btn-info button-margin" onclick="document.getElementsByName('newPhotos')[0].click()">Choose new photo</button>
+            <br />
+            <input type="submit" class="btn btn-primary button-margin" value="Upload photo" />
+        </form>
+        <a class="btn btn-danger button-margin" asp-controller="Manage" asp-action="DeletePhoto" asp-route-photopath="@Model.SelectedPhotoPath">Delete selected photo</a>
+    </div>
+    <div class="col-md-9">
+        @if (Model.SelectedPhotoPath != null)
+        {
+            <div>
+                <img src=@Model.SelectedPhotoPath alt="selectedPhoto" class="img-thumbnail img-rounded pull-right" />
+            </div>
+        }
+    </div>
+</div>
+<hr />
+<div class="row user-page">
+
+    @foreach (var image in Model.PhotoPaths)
+    {
+        <div class="col-md-3">
+            <div class="panel panel-default panel-transparent">
+                @*<div class="panel-heading">
+                        <h4 class="panel-title">@image.Substring(image.LastIndexOf('/') + 1)</h4>
+                    </div>*@
+                <div class="panel-body user-list-photo">
+                    <a asp-controller="Manage" asp-action="Photos" asp-route-photopath="@image"><img src=@image alt="userPhoto" class="img-responsive" /></a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

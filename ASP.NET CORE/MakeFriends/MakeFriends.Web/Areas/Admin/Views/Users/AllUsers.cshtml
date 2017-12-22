@@ -1,0 +1,66 @@
+﻿@model UsersPagingViewModel
+@{
+    ViewData["Title"] = "All Users";
+}
+
+<h2>All Users</h2>
+
+<div class="text-center">
+    <nav aria-label="PageНavigation">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" asp-controller="Users" asp-action="AllUsers" asp-route-page="@Model.PreviousPage">Previous</a></li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(Model.CurrentPage == i ? "active" : string.Empty)"><a class="page-link" asp-controller="Users" asp-action="AllUsers" asp-route-page="@i">@i</a></li>
+            }
+            <li class="page-item"><a class="page-link" asp-controller="Users" asp-action="AllUsers" asp-route-page="@Model.NextPage">Next</a></li>
+        </ul>
+    </nav>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Credits
+            </th>
+            <th>
+                Actions
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+            {
+            <tr>
+                <td>
+                    @user.Email
+                </td>
+                <td>
+                    @user.FirstName
+                </td>
+                <td>
+                    @user.LastName
+                </td>
+                <td>
+                    @user.Credits
+                </td>
+
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-controller="Users" asp-action="EditUser" asp-route-userId="@user.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Users" asp-action="DeleteUser" asp-route-userId="@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

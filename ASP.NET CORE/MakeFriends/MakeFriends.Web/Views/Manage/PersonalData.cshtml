@@ -1,0 +1,76 @@
+﻿@model PersonalDataViewModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData.AddActivePage(ManageNavPages.PersonalData);
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <form method="post">
+        <div class="col-md-5">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Height"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender"></label>
+                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control"></select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sexuality"></label>
+                <select asp-for="Sexuality" asp-items="Html.GetEnumSelectList<Sexuality>()" class="form-control"></select>
+                <span asp-validation-for="Sexuality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsDrinking"></label>
+                @Html.RadioButtonFor(m => m.IsDrinking, true) Yes
+                @Html.RadioButtonFor(m => m.IsDrinking, false) No
+                <span asp-validation-for="IsDrinking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSmoking"></label>
+                @Html.RadioButtonFor(m => m.IsSmoking, true) Yes
+                @Html.RadioButtonFor(m => m.IsSmoking, false) No
+                <span asp-validation-for="IsSmoking" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="EyesColor"></label>
+                <select asp-for="EyesColor" asp-items="Html.GetEnumSelectList<EyesColor>()" class="form-control"></select>
+                <span asp-validation-for="EyesColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HairColor"></label>
+                <select asp-for="HairColor" asp-items="Html.GetEnumSelectList<HairColor>()" class="form-control"></select>
+                <span asp-validation-for="HairColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Relations"></label>
+                <select asp-for="Relations" asp-items="Html.GetEnumSelectList<Relations>()" class="form-control"></select>
+                <span asp-validation-for="Relations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
