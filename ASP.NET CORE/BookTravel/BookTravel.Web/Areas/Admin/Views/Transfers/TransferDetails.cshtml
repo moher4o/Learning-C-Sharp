@@ -1,4 +1,4 @@
-﻿@model  AdminTransferListingServiceModel
+﻿@model AdminTransferListingServiceModel
 @{
     ViewData["Title"] = "Transfer Details";
 }
@@ -6,143 +6,145 @@
 <h2 style="color:azure;">Transfer Details</h2>
 
 <div class="row row-margin">
-    <form method="post">
-        <div class="col-xs-4">
-            <div class="panel panel-default panel-transparent">
-                <div class="panel-body-trinfo user-list-photo">
-                    <h3 class="text-center">@Model.TransferTypeTitle</h3>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <input name="transferId" asp-for="@Model.Id" type="hidden" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Subject"></label>
-                        <input asp-for="Subject" class="form-control" />
-                        <span asp-validation-for="Subject" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="KlientName"></label>
-                        <input asp-for="KlientName" class="form-control" />
-                        <span asp-validation-for="KlientName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Email"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Phone"></label>
-                        <input asp-for="Phone" class="form-control" />
-                        <span asp-validation-for="Phone" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DestinationName"></label>
-                        <input asp-for="DestinationName" class="form-control" />
-                        <span asp-validation-for="DestinationName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="AdditionalInformation"></label>
-                        <textarea asp-for="AdditionalInformation" class="form-control" rows="5"></textarea>
-                        <span asp-validation-for="AdditionalInformation" class="text-danger"></span>
-                    </div>
+    @*<form method="post">*@
+    <div class="col-xs-4">
+        <div class="panel panel-default panel-transparent">
+            <div class="panel-body-trinfo user-list-photo">
+                <h3 class="text-center">@Model.TransferTypeTitle</h3>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input name="transferId" asp-for="@Model.Id" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Subject"></label>
+                    <input asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="KlientName"></label>
+                    <input asp-for="KlientName" class="form-control" />
+                    <span asp-validation-for="KlientName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DestinationName"></label>
+                    <input asp-for="DestinationName" class="form-control" />
+                    <span asp-validation-for="DestinationName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AdditionalInformation"></label>
+                    <textarea asp-for="AdditionalInformation" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="AdditionalInformation" class="text-danger"></span>
                 </div>
             </div>
-            <div class="panel panel-default panel-transparent">
-                <div class="panel-body-trinfo user-list-photo">
-                    <input type="submit" class="btn btn-success button-margin pull-right" value="SEND" />
-                    <a class="btn btn-info button-margin pull-left" asp-area="Admin" asp-controller="Transfers" asp-action="AllTransfers" asp-route-page="1">Back</a>
-                    <a class="btn btn-info button-margin" asp-area="Admin" asp-controller="Transfers" asp-action="ExportTransferPdf" asp-route-transferId="@Model.Id" target="_blank">Export to pdf</a>
-                </div>
-            </div>
+        </div>
+        <div class="panel panel-default panel-transparent">
+            <div class="panel-body-trinfo user-list-photo">
+                @*<input type="submit" class="btn btn-success button-margin pull-right" value="SEND" />*@
+                <a class="btn btn-primary button-margin pull-left" asp-area="Admin" asp-controller="Transfers" asp-action="AllTransfers" asp-route-page="1">Back</a>
+                <a class="btn btn-info button-margin pull-right" asp-area="Admin" asp-controller="Transfers" asp-action="ExportTransferPdf" asp-route-transferId="@Model.Id" target="_blank">Export to pdf</a>
+                <label style="color:red; text-align:center">This text will be added later-----------</label>
 
+            </div>
         </div>
-        <div class="col-xs-4">
-            <div class="panel panel-default panel-transparent">
-                <div class="panel-body-trinfo user-list-photo">
-                    <h3 style="text-align:center">Arrival information</h3>
-                    <div class="form-group">
-                        <label asp-for="ArrivalDate"></label>
-                        <input asp-for="ArrivalDate" class="form-control" />
-                        <span asp-validation-for="ArrivalDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ArrivalAirportName"></label>
-                        <input asp-for="ArrivalAirportName" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ArrivalAirlineName"></label>
-                        <input asp-for="ArrivalAirlineName" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ArrivalFlightNumber"></label>
-                        <input asp-for="ArrivalFlightNumber" class="form-control" />
-                        <span asp-validation-for="ArrivalFlightNumber" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ArrivalPassengers"></label>
-                        <input asp-for="ArrivalPassengers" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="BabyPassengers"></label>
-                        <input asp-for="BabyPassengers" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="HoldBags"></label>
-                        <input asp-for="HoldBags" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="SkiBags"></label>
-                        <input asp-for="SkiBags" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="SnowboardBags"></label>
-                        <input asp-for="SnowboardBags" class="form-control" />
-                    </div>
+
+    </div>
+    <div class="col-xs-4">
+        <div class="panel panel-default panel-transparent">
+            <div class="panel-body-trinfo user-list-photo">
+                <h3 style="text-align:center">Arrival information</h3>
+                <div class="form-group">
+                    <label asp-for="ArrivalDate"></label>
+                    <input asp-for="ArrivalDate" class="form-control" />
+                    <span asp-validation-for="ArrivalDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArrivalAirportName"></label>
+                    <input asp-for="ArrivalAirportName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArrivalAirlineName"></label>
+                    <input asp-for="ArrivalAirlineName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArrivalFlightNumber"></label>
+                    <input asp-for="ArrivalFlightNumber" class="form-control" />
+                    <span asp-validation-for="ArrivalFlightNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArrivalPassengers"></label>
+                    <input asp-for="ArrivalPassengers" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="BabyPassengers"></label>
+                    <input asp-for="BabyPassengers" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="HoldBags"></label>
+                    <input asp-for="HoldBags" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="SkiBags"></label>
+                    <input asp-for="SkiBags" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="SnowboardBags"></label>
+                    <input asp-for="SnowboardBags" class="form-control" />
                 </div>
             </div>
         </div>
-        <div class="col-xs-4">
-            @if (Model.ReturnPassengers > 0)
-            {
-                <div class="panel panel-default panel-transparent">
-                    <div class="panel-body-trinfo user-list-photo">
-                        <h3 class="text-center">Departure information</h3>
-                        <div class="form-group">
-                            <label asp-for="DepartureDate"></label>
-                            <input asp-for="DepartureDate" class="form-control" />
-                            <span asp-validation-for="DepartureDate" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="DepartureAirportName"></label>
-                            <input asp-for="DepartureAirportName" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="DepartureAirlineName"></label>
-                            <input asp-for="DepartureAirlineName" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="DepartureFlightNumber"></label>
-                            <input asp-for="DepartureFlightNumber" class="form-control" />
-                            <span asp-validation-for="DepartureFlightNumber" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="ReturnPassengers"></label>
-                            <input asp-for="ReturnPassengers" class="form-control" />
-                        </div>
+    </div>
+    <div class="col-xs-4">
+        @if (Model.ReturnPassengers > 0)
+        {
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-body-trinfo user-list-photo">
+                    <h3 class="text-center">Departure information</h3>
+                    <div class="form-group">
+                        <label asp-for="DepartureDate"></label>
+                        <input asp-for="DepartureDate" class="form-control" />
+                        <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepartureAirportName"></label>
+                        <input asp-for="DepartureAirportName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepartureAirlineName"></label>
+                        <input asp-for="DepartureAirlineName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DepartureFlightNumber"></label>
+                        <input asp-for="DepartureFlightNumber" class="form-control" />
+                        <span asp-validation-for="DepartureFlightNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReturnPassengers"></label>
+                        <input asp-for="ReturnPassengers" class="form-control" />
                     </div>
                 </div>
-            }
-            else
-            {
-                <div class="panel panel-default panel-transparent">
-                    <div class="panel-body-trinfo user-list-photo text-center">
-                        <h3>Departure information</h3>
-                        <br />
-                        <h4>Not available!</h4>
-                        <h4>Selected transfer has no return passengers</h4>
-                    </div>
+            </div>
+        }
+        else
+        {
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-body-trinfo user-list-photo text-center">
+                    <h3>Departure information</h3>
+                    <br />
+                    <h4>Not available!</h4>
+                    <h4>Selected transfer has no return passengers</h4>
                 </div>
-            }
-        </div>
-    </form>
+            </div>
+        }
+    </div>
+    @*</form>*@
 </div>

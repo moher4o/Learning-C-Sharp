@@ -1,0 +1,23 @@
+﻿@model DeleteUserViewModel
+
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<h2 style="color:azure;">Are you sure you want to delete @Model.Email?</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <form method="post" asp-controller="Users" asp-action="DestroyUser" asp-route-userId="@Model.UserId">
+            <input type="submit" class="btn btn-danger form-control" value="Yes" />
+        </form>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="Users" asp-action="AllUsers" asp-route-page="1" class="btn btn-info form-control">No</a>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

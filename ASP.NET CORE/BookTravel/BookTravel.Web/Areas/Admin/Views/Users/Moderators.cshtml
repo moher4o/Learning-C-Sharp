@@ -1,0 +1,18 @@
+﻿@model IEnumerable<AdminUserListingServiceModel>
+@{
+    ViewData["Title"] = "Moderators";
+}
+
+<h2 style="color:azure;">Moderators</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.Partial("_ListUsers", Model)
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
