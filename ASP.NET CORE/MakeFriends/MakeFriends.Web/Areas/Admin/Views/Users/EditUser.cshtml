@@ -69,8 +69,15 @@
                 </div>
             </div>
         </div>
-        <input type="submit" class="btn btn-success button-margin pull-right" value="Save" />
 
+        <input type="submit" class="btn btn-success button-margin pull-right" value="Save" />
+        <a class="btn btn-info button-margin pull-left" asp-controller="Users" asp-action="AllUsers" asp-route-page="1">Back</a>
+        <br />
+        <br />
+        <br />
+        <div class="blink_me_background">
+            <p4 class="blink_me">All photos, which are not approved will be deleted after you press Save button!</p4>
+        </div>
     </div>
 
     <div class="col-md-8">
@@ -85,19 +92,6 @@
                 </div>
             </div>
         }
-
-        @*@foreach (var photo in Model.Photos)
-            {
-                <div class="col-md-4">
-                    <div class="panel panel-default panel-transparent">
-                        <div class="panel-body user-list-photo">
-                            <input type="hidden" asp-for="@photo.PhotoPath" />
-                            <img src=@photo.PhotoPath alt="userPhoto" class="img-responsive" />
-                            <input asp-for="@photo.IsApproved" type="checkbox" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            }*@
 
         <input type="hidden" asp-for="@Model.Id" />
     </div>

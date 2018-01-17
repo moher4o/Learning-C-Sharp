@@ -1,0 +1,156 @@
+﻿@model AddTransferViewModel
+@{
+    ViewData["Title"] = "Add Transfer";
+}
+
+<div class="row row-margin">
+    <form method="post">
+        <div class="col-xs-4">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-body-trinfo user-list-photo">
+                    <h3 class="text-center">@Model.TransferType.Title</h3>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input name="transferTypeId" asp-for="TransferType.Id" type="hidden" />
+                        <input asp-for="TransferType" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Subject"></label>
+                        <input asp-for="Subject" class="form-control" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="KlientName"></label>
+                        <input asp-for="KlientName" class="form-control" />
+                        <span asp-validation-for="KlientName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Destination"></label>
+                        <select name="destination" asp-items="Model.Destination" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdditionalInformation"></label>
+                        <textarea asp-for="AdditionalInformation" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="AdditionalInformation" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-body-trinfo user-list-photo">
+                        <input type="submit" class="btn btn-success button-margin pull-right" value="SEND" />
+                        <a class="btn btn-info button-margin pull-left" asp-controller="Transfers" asp-action="SelectTransferType">Back</a>
+                        <label style="color:red; text-align:center">By clicking SEND, you agree to Terms & Conditions </label>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="col-xs-4">
+            <div class="panel panel-default panel-transparent">
+                <div class="panel-body-trinfo user-list-photo">
+                    <h3 class="text-center">Arrival information</h3>
+                    <div class="form-group">
+                        <label asp-for="ArrivalDate"></label>
+                        <input asp-for="ArrivalDate" class="form-control" />
+                        <span asp-validation-for="ArrivalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArrivalTime"></label>
+                        <input asp-for="ArrivalTime" class="form-control" />
+                        <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArrivalAirport"></label>
+                        <select name="arrivalAirport" asp-items="Model.ArrivalAirport" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArrivalAirline"></label>
+                        <select name="arrivalAirline" asp-items="Model.ArrivalAirline" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArrivalFlightNumber"></label>
+                        <input asp-for="ArrivalFlightNumber" class="form-control" />
+                        <span asp-validation-for="ArrivalFlightNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArrivalPassengers"></label>
+                        <select name="arrivalPassengers" asp-items="Model.ArrivalPassengers" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BabyPassengers"></label>
+                        <select name="babyPassengers" asp-items="Model.BabyPassengers" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HoldBags"></label>
+                        <select name="holdBags" asp-items="Model.HoldBags" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkiBags"></label>
+                        <select name="skiBags" asp-items="Model.SkiBags" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SnowboardBags"></label>
+                        <select name="snowboardBags" asp-items="Model.SnowboardBags" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            @if (!Model.TransferType.IsOneWay)
+            {
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-body-trinfo user-list-photo">
+                        <h3 class="text-center">Departure information</h3>
+                        <div class="form-group">
+                            <label asp-for="DepartureDate"></label>
+                            <input asp-for="DepartureDate" class="form-control" />
+                            <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartureTime"></label>
+                            <input asp-for="DepartureTime" class="form-control" />
+                            <span asp-validation-for="DepartureTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartureAirport"></label>
+                            <select name="departureAirport" asp-items="Model.DepartureAirport" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartureAirline"></label>
+                            <select name="departureAirline" asp-items="Model.DepartureAirline" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartureFlightNumber"></label>
+                            <input asp-for="DepartureFlightNumber" class="form-control" />
+                            <span asp-validation-for="DepartureFlightNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ReturnPassengers"></label>
+                            <select name="returnPassengers" asp-items="Model.ReturnPassengers" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-body-trinfo user-list-photo text-center">
+                        <h3>Departure information</h3>
+                        <br />
+                        <h4>Not available!</h4>
+                        <h4>Selected transfer is one way only</h4>
+                    </div>
+                </div>
+            }
+        </div>
+    </form>
+</div>

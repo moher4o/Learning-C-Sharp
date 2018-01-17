@@ -25,20 +25,32 @@ namespace MakeFriends.Web.Infrastructure.Extensions
                 Task
                     .Run(async () =>
                     {
-                    var adminName = DataConstants.AdministratorRole;
+                        var adminName = DataConstants.AdministratorRole;
 
-                    var result = await roleManager.RoleExistsAsync(adminName);
-                    if (!result)
-                    {
-                        await roleManager.CreateAsync(new IdentityRole {
-                            Name = adminName
-                        });
-                    }
+                        var result = await roleManager.RoleExistsAsync(adminName);
+                        if (!result)
+                        {
+                            await roleManager.CreateAsync(new IdentityRole
+                            {
+                                Name = adminName
+                            });
+                        }
 
-                    var adminEmail = "admin@mysite.com";
-                    var adminUser = await userManager.FindByEmailAsync(adminEmail);
-                    if (adminUser == null)
-                    {
+                        var moderatorName = DataConstants.ModeratorRole;
+
+                        result = await roleManager.RoleExistsAsync(moderatorName);
+                        if (!result)
+                        {
+                            await roleManager.CreateAsync(new IdentityRole
+                            {
+                                Name = DataConstants.ModeratorRole
+                            });
+                        }
+
+                        var adminEmail = DataConstants.AdminUsername;
+                        var adminUser = await userManager.FindByEmailAsync(adminEmail);
+                        if (adminUser == null)
+                        {
                             adminUser = new User
                             {
                                 Email = DataConstants.AdminUsername,
@@ -47,14 +59,14 @@ namespace MakeFriends.Web.Infrastructure.Extensions
                                 LastName = DataConstants.AdminLastName,
                                 BirthDate = DateTime.ParseExact(DataConstants.AdminBirthDate, "dd-mm-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal),
                                 RegistrationDate = DateTime.UtcNow
-                        };
+                            };
                             await userManager.CreateAsync(adminUser, DataConstants.AdminPassword);
 
                             await userManager.AddToRoleAsync(adminUser, adminName);
                         }
                     }
                     ).Wait();
-                    }
+            }
 
 
             return app;

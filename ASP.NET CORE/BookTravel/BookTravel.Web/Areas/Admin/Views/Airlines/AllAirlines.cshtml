@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AirlineServiceModel>
+@{
+    ViewData["Title"] = "All Airlines";
+}
+
+<h2 style="color:azure;">All Airlines</h2>
+
+<div>
+    <a class="btn btn-success btn-group-lg" asp-controller="Airlines" asp-action="NewAirline">Add New Airline</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-color-azure">
+                    <th>
+                        Airline
+                    </th>
+                    <th class="col-xs-4">
+                        Actions
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody style="background-color:bisque">
+                @foreach (var airline in Model)
+                {
+                    <tr>
+                        <td>
+                            @airline.Name
+                        </td>
+                        <td class="col-xs-4">
+                            <a class="btn btn-warning btn-sm" asp-controller="Airlines" asp-action="EditAirline" asp-route-airlineId="@airline.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-controller="Airlines" asp-action="DeleteAirline" asp-route-airlineId="@airline.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -33,6 +33,9 @@
                 Credits
             </th>
             <th>
+                Not Approved Photo Count
+            </th>
+            <th>
                 Actions
             </th>
 
@@ -40,27 +43,38 @@
     </thead>
     <tbody>
         @foreach (var user in Model.Users)
-            {
-            <tr>
-                <td>
-                    @user.Email
-                </td>
-                <td>
-                    @user.FirstName
-                </td>
-                <td>
-                    @user.LastName
-                </td>
-                <td>
-                    @user.Credits
-                </td>
-
-                <td>
-                    <a class="btn btn-warning btn-sm" asp-controller="Users" asp-action="EditUser" asp-route-userId="@user.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-controller="Users" asp-action="DeleteUser" asp-route-userId="@user.Id">Delete</a>
-                </td>
-            </tr>
+        {
+        <tr>
+            <td>
+                @user.Email
+            </td>
+            <td>
+                @user.FirstName
+            </td>
+            <td>
+                @user.LastName
+            </td>
+            <td>
+                @user.Credits
+            </td>
+            <td>
+                @user.NotApprovedPhotoCount
+            </td>
+            <td>
+                <a class="btn btn-warning btn-sm" asp-controller="Users" asp-action="EditUser" asp-route-userId="@user.Id">Edit</a>
+                @if (user.Roles.Count == 0 || User.IsInRole(DataConstants.AdministratorRole))
+        {
+            <a class="btn btn-danger btn-sm" asp-controller="Users" asp-action="DeleteUser" asp-route-userId="@user.Id" asp-route-email="@user.Email">Delete</a>
+            <a class="btn btn-info btn-sm" asp-controller="Users" asp-action="AddToRole" asp-route-userId="@user.Id">Add Role</a>
+}
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
 

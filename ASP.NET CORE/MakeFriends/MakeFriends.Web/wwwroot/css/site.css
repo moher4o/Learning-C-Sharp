@@ -162,3 +162,20 @@ div.vertical-line {
         height: 70px;
         }
 /*till here*/
+
+/*blinking text*/
+.blink_me {
+    animation: blinker 3s linear infinite;
+    color:antiquewhite;
+}
+
+.blink_me_background {
+    background: rgba(46, 51, 56, 0.5) !important;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+/*blinking text*/

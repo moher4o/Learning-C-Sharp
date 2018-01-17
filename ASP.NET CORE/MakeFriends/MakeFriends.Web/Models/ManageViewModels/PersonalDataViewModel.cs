@@ -22,10 +22,13 @@ namespace MakeFriends.Web.Models.ManageViewModels
         [Display(Name = "Eyes Color")]
         public EyesColor? EyesColor { get; set; }
 
+        [Display(Name = "Hair Color")]
         public HairColor? HairColor { get; set; }
 
+        [Display(Name = "Smoking?")]
         public bool? IsSmoking { get; set; }
 
+        [Display(Name = "Drinking?")]
         public bool? IsDrinking { get; set; }
 
         public Sexuality? Sexuality { get; set; }

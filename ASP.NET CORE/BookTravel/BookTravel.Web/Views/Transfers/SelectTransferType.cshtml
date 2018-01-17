@@ -1,0 +1,17 @@
+﻿@model SelectTransferViewModel
+@{
+    ViewData["Title"] = "Select Transfer Type";
+}
+
+<h2 style="color:azure;">Select Transfer Type</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <select name="transferName" asp-items="Model.TransferNames" class="form-control"></select>
+            <br />
+            <button type="submit" class="btn btn-success">Continue with transfer details</button>
+        </form>
+    </div>
+</div>
+

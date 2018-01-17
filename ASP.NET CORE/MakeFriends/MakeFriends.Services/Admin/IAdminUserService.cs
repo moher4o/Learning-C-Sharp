@@ -7,7 +7,11 @@
 
     public interface IAdminUserService
     {
-        IEnumerable<AdminUserListingServiceModel> AllUsers(int page = 1);
+        Task<IEnumerable<AdminUserListingServiceModel>> AllUsers(int page = 1);
+
+        Task<IEnumerable<AdminUserListingServiceModel>> Moderators();
+
+        Task<IEnumerable<AdminUserListingServiceModel>> Administrators();
 
         int TotalPagesWithUsers();
 
@@ -15,8 +19,12 @@
 
         Task<bool> UserPhotosUpdateStatus(string userId, List<UserImages> photos);
 
-        //IEnumerable<string> GetAllRoles();
+        Task<bool> DeleteUserAsync(string userId);
 
-        //Task<bool> UserAddToRole(string userId, string role);
+        Task<bool> DeleteUserRoleAsync(string userId);
+
+        IEnumerable<string> GetAllRoles();
+
+        Task<bool> AddUserToRole(string userId, string role);
     }
 }

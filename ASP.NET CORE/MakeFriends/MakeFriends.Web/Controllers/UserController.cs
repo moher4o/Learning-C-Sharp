@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using static MakeFriends.Data.DataConstants;
 using MakeFriends.Services.Models;
 using AutoMapper;
-
+using MakeFriends.Web.Infrastructure.Filters;
 
 namespace MakeFriends.Web.Controllers
 {

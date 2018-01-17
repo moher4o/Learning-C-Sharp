@@ -25,6 +25,17 @@ namespace MakeFriends.Services.Implementations
             return false;
         }
 
+        public bool DeleteUserDirectory(string userId)
+        {
+            string globalPath = Environment.CurrentDirectory;
+
+            if (Directory.Exists(globalPath + "/" + DataConstants.UserPhotoSubDirectory + "/" + userId))
+            {
+                Directory.Delete(globalPath + "/" + DataConstants.UserPhotoSubDirectory + "/" + userId, true);
+            }
+                return true;
+        }
+
         public bool ProcessPhoto(Stream inputStream, string userId, string photoName)
         {
         var settings = new ProcessImageSettings()

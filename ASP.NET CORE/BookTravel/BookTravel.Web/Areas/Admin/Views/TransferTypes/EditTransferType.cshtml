@@ -1,0 +1,42 @@
+﻿@model TransferTypeViewModel
+@{
+    ViewData["Title"] = "Edit Transfer Type";
+}
+
+<h2 style="color:azure;">Edit @Model.Title</h2>
+<div class="text-color-azure">
+    <div class="row">
+        <form method="post">
+            <div class="col-md-5">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaxPeopleCount"></label>
+                    <input asp-for="MaxPeopleCount" class="form-control" />
+                    <span asp-validation-for="MaxPeopleCount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsOneWay"></label>
+                    @Html.RadioButtonFor(m => m.IsOneWay, true) Yes
+                    @Html.RadioButtonFor(m => m.IsOneWay, false) No
+                    <span asp-validation-for="IsOneWay" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+                <a class="btn btn-info pull-right" asp-action="AllTransferTypes">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

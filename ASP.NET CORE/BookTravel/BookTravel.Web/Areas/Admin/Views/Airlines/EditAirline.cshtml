@@ -1,0 +1,29 @@
+﻿@model AirlineViewModel
+@{
+    ViewData["Title"] = "Edit Airline";
+}
+
+<h2 style="color:azure;">Edit Airline - @Model.Name</h2>
+
+<div class="text-color-azure">
+    <div class="row">
+        <form method="post">
+            <div class="col-md-5">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+                <a class="btn btn-info pull-right" asp-action="AllAirlines">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+

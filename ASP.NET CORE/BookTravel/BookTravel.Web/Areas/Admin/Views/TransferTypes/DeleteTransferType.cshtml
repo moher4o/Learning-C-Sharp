@@ -1,0 +1,21 @@
+﻿@model DeleteTransferTypeViewModel
+@{
+    ViewData["Title"] = "Delete Transfer Type";
+}
+
+<h2 style="color:azure;">Are you sure you want to delete - @Model.TypeTitle</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <form method="post" asp-controller="TransferTypes" asp-action="DestroyType" asp-route-typeId="@Model.TypeId">
+            <input type="submit" class="btn btn-danger form-control" value="Yes" />
+        </form>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="TransferTypes" asp-action="AllTransferTypes" class="btn btn-info form-control">No</a>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

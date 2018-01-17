@@ -29,12 +29,12 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">MakeFriends</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    @if (User.IsInRole(DataConstants.AdministratorRole))
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole(DataConstants.AdministratorRole) || User.IsInRole(DataConstants.ModeratorRole))
                     {
                         <li class="dropdown dropdown-toggle">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Admin
+                                Moderator
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -43,6 +43,22 @@
                         </li>
                     }
                 </ul>
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole(DataConstants.AdministratorRole))
+                    {
+                        <li class="dropdown dropdown-toggle">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Admin
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="Admin" asp-controller="users" asp-action="Moderators">Moderators</a></li>
+                                <li><a asp-area="Admin" asp-controller="users" asp-action="Administrators">Administrators</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
@@ -63,7 +79,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p class="pull-right">&copy; 2017 - MakeFriends</p>
+            <p class="pull-right">&copy; 2017 - Samsoft</p>
         </footer>
     </div>
 

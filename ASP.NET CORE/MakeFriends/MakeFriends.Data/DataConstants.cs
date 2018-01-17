@@ -19,15 +19,16 @@
         public const int UserNameMaxLength = 22;
 
         public const string AdministratorRole = "Administrator";
+        public const string ModeratorRole = "Moderator";
 
         public const string SuccessMessageKey = "SuccessMessage";
         public const string ErrorMessageKey = "ErrorMessage";
 
         //Admin Data
-        public const string AdminUsername = "admin@abv.bg";
+        public const string AdminUsername = "samsoft@abv.bg";
         public const string AdminFirstName = "Angel";
         public const string AdminLastName = "Vukov";
-        public const string AdminPassword = "admin12";
+        public const string AdminPassword = "Moher4o!Vukov";
         public const string AdminBirthDate = "02-01-1973";
 
         public const int AdminUsersPerPageCount = 5;

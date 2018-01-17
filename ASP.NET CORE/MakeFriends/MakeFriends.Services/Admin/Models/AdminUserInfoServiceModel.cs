@@ -60,7 +60,7 @@ namespace MakeFriends.Services.Admin.Models
         public void ConfigureMapping(Profile profile)
         {
             profile.CreateMap<User, AdminUserInfoServiceModel>()
-                   .ForMember(u => u.Photos, cfg => cfg.MapFrom(u => u.Images.Select(i => new UserImages {
+                   .ForMember(u => u.Photos, cfg => cfg.MapFrom(u => u.Images.OrderBy(i => i.IsApproved).Select(i => new UserImages {
                        PhotoPath = "/" + UserPhotoSubDirectory + "/" + u.Id + "/" + i.PhotoName,
                        IsApproved = i.IsApproved
                    }).ToList()));

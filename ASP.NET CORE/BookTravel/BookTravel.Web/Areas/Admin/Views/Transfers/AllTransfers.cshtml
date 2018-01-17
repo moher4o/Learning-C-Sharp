@@ -1,0 +1,79 @@
+﻿@model TransfersPagingViewModel
+@{
+    ViewData["Title"] = "All Transfers";
+}
+
+<h2 style="color:azure;">All Transfers</h2>
+
+<div class="text-center">
+    <nav aria-label="PageНavigation">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" asp-controller="Users" asp-action="AllUsers" asp-route-page="@Model.PreviousPage">Previous</a></li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(Model.CurrentPage == i ? "active" : string.Empty)"><a class="page-link" asp-controller="Users" asp-action="AllUsers" asp-route-page="@i">@i</a></li>
+            }
+            <li class="page-item"><a class="page-link" asp-controller="Users" asp-action="AllUsers" asp-route-page="@Model.NextPage">Next</a></li>
+        </ul>
+    </nav>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="text-color-azure">
+            <th>
+                Customer
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Arrival Date
+            </th>
+            <th>
+                Airport
+            </th>
+            <th>
+                Airline
+            </th>
+            <th>
+                Transfer Type
+            </th>
+
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody style="background-color:bisque">
+        @foreach (var transfer in Model.Transfers)
+        {
+        <tr>
+            <td>
+                @transfer.KlientName
+            </td>
+            <td>
+                @transfer.Email
+            </td>
+            <td>
+                @transfer.ArrivalDate
+            </td>
+            <td>
+                @transfer.ArrivalAirportName
+            </td>
+            <td>
+                @transfer.ArrivalAirlineName
+            </td>
+            <td>
+                @transfer.TransferTypeTitle
+            </td>
+            <td>
+                <a class="btn btn-warning btn-sm" asp-controller="Transfers" asp-action="TransferDetails" asp-route-transferId="@transfer.Id">Details</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
