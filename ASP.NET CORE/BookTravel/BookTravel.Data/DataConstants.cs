@@ -12,7 +12,7 @@
         public const string AdminUsername = "samsoft@abv.bg";
         public const string AdminFirstName = "Angel";
         public const string AdminLastName = "Vukov";
-        public const string AdminPassword = "Moher4o!Vukov";
+        public const string AdminPassword = "******";
 
         public const int TransfersPerPageCount = 20;
 
