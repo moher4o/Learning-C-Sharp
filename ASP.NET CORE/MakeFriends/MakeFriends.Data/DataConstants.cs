@@ -28,7 +28,7 @@
         public const string AdminUsername = "samsoft@abv.bg";
         public const string AdminFirstName = "Angel";
         public const string AdminLastName = "Vukov";
-        public const string AdminPassword = "Moher4o!Vukov";
+        public const string AdminPassword = "****";
         public const string AdminBirthDate = "02-01-1973";
 
         public const int AdminUsersPerPageCount = 5;
